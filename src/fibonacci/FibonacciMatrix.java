@@ -26,7 +26,6 @@ public class FibonacciMatrix {
         cells[1][1] = fib0.add(fib1);
     }
     
-    
     public FibonacciMatrix multiply(FibonacciMatrix other) {
         FibonacciMatrix multiple = new FibonacciMatrix();
         for (int i = 0; i<2; i++) {
@@ -35,6 +34,10 @@ public class FibonacciMatrix {
             }
         }
         return multiple;
+    }
+    
+    public BigInteger getFibonacciNumber() {
+        return cells[1][1];
     }
     
     @Override

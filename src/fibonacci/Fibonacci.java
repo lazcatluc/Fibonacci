@@ -6,8 +6,6 @@
 
 package fibonacci;
 
-import java.math.BigInteger;
-
 /**
  *
  * @author Catalin
@@ -18,8 +16,10 @@ public class Fibonacci {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FibonacciMatrix matrix = new FibonacciMatrix(BigInteger.ONE, BigInteger.ONE);
-        System.out.println(matrix.multiply(matrix).multiply(matrix).multiply(matrix));
+        
+        ComputeFibonacci computeFib = new ComputeFibonacci(3000000);
+        computeFib.compute();
+        System.out.println(computeFib.getFibonacciNumber());
     }
     
 }
