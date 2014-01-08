@@ -11,7 +11,7 @@ package fibonacci;
  * @author Catalin
  */
 public class Fibonacci {
-    public static int n = 10000000;
+    public static int n = 40000000;
 
     /**
      * @param args the command line arguments

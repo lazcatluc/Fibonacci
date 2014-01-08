@@ -2,6 +2,10 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 package fibonacci;
@@ -28,7 +32,7 @@ public class FibonacciMatrix {
             cells[1][1].pow(2).subtract(aSquare));
     }
     
-    public FibonacciMatrix multiplyByZeroOneOneTwo() {
+    public FibonacciMatrix multiplyByZeroOne() {
         return new FibonacciMatrix(cells[0][1], cells[1][1]);
     }
     

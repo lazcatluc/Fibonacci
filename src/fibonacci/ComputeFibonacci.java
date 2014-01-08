@@ -22,7 +22,7 @@ public class ComputeFibonacci {
             compRec.compute();
             matrix = compRec.getMatrix().square();
             if (power % 2 == 1) {
-                matrix = getMatrix().multiplyByZeroOneOneTwo();
+                matrix = getMatrix().multiplyByZeroOne();
             }
         }
     }
