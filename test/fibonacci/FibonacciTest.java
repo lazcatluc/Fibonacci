@@ -24,7 +24,7 @@ public class FibonacciTest {
         ComputeFibonacci computeFibonacci = new ComputeFibonacci(n);
         computeFibonacci.compute();
         
-        assertEquals(expectedFibonacci, computeFibonacci.getFibonacciNumber());
+        assertEquals(expectedFibonacci, computeFibonacci.getMatrix().getFibonacciNumber());
     }
     
     /**
