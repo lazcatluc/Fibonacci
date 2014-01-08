@@ -9,6 +9,7 @@ package fibonacci;
 import java.math.BigInteger;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
@@ -20,6 +21,7 @@ public class FibonacciDoubling extends RecursiveTask<BigInteger> {
      * A cache of squared fibonacci numbers
      */
     private static BigInteger[] cache;
+    public static final AtomicLong COUNT_COMP = new AtomicLong(0);
     
     private final int power;
     
@@ -31,6 +33,7 @@ public class FibonacciDoubling extends RecursiveTask<BigInteger> {
         cache = new BigInteger[n+2];
         cache[1] = BigInteger.ONE;
         cache[2] = BigInteger.ONE;
+        COUNT_COMP.set(0);
         return new ForkJoinPool().invoke(new FibonacciDoubling(n+1));
     }
     
@@ -52,11 +55,13 @@ public class FibonacciDoubling extends RecursiveTask<BigInteger> {
                 result = remainder.join().add(halfPowerDoubling.join());
             }
             if (power < cache.length-1) {
-                cache[power] = result.pow(2);
+                result = result.pow(2);
             }
-            else {
-                cache[power] = result;
+            if (cache[power] != null) {
+                // we worked for nothing :(
+                COUNT_COMP.incrementAndGet();
             }
+            cache[power] = result;
         }
         return cache[power];
     }

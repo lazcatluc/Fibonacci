@@ -27,9 +27,6 @@ public class Fibonacci {
         FibonacciDoubling.getFibonacciNumber(n);
         long second = System.currentTimeMillis() - first;
         System.out.print(second / 1000);
-        System.out.println(" seconds"); 
+        System.out.println(" seconds; redundant computes: "+FibonacciDoubling.COUNT_COMP); 
     }
-    
-    
-    
 }
