@@ -17,7 +17,7 @@ public class Fibonacci {
      */
     public static void main(String[] args) {
         
-        ComputeFibonacci computeFib = new ComputeFibonacci(3000000);
+        ComputeFibonacci computeFib = new ComputeFibonacci(4000000);
         computeFib.compute();
         System.out.println(computeFib.getFibonacciNumber());
     }

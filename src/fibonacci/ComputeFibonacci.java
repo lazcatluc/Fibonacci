@@ -25,14 +25,27 @@ public class ComputeFibonacci {
         if (power > 1) {
             ComputeFibonacci compRec = new ComputeFibonacci(power / 2);
             compRec.compute();
-            matrix = compRec.matrix.multiply(compRec.matrix);
+            matrix = compRec.getMatrix().square();
             if (power % 2 == 1) {
-                matrix = matrix.multiply(new FibonacciMatrix(BigInteger.ZERO, BigInteger.ONE));
+                matrix = getMatrix().multiplyByZeroOneOneTwo();
             }
         }
     }
     
     public BigInteger getFibonacciNumber() {
-        return matrix.getFibonacciNumber();
+        return getMatrix().getFibonacciNumber();
     }
+
+    @Override
+    public String toString() {
+        return  getMatrix().toString();
+    }
+
+    /**
+     * @return the matrix
+     */
+    public FibonacciMatrix getMatrix() {
+        return matrix;
+    }
+    
 }

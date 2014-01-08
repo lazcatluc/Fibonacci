@@ -26,6 +26,15 @@ public class FibonacciMatrix {
         cells[1][1] = fib0.add(fib1);
     }
     
+    public FibonacciMatrix square() {
+        final BigInteger aSquare = cells[0][0].pow(2);
+        return new FibonacciMatrix(aSquare.add(cells[0][1].pow(2)),
+            cells[1][1].pow(2).subtract(aSquare));
+    }
+    
+    public FibonacciMatrix multiplyByZeroOneOneTwo() {
+        return new FibonacciMatrix(cells[0][1], cells[1][1]);
+    }
     public FibonacciMatrix multiply(FibonacciMatrix other) {
         FibonacciMatrix multiple = new FibonacciMatrix();
         for (int i = 0; i<2; i++) {
@@ -44,4 +53,5 @@ public class FibonacciMatrix {
     public String toString() {
         return cells[0][0]+","+cells[0][1]+"\n"+cells[1][0]+","+cells[1][1];
     }
+
 }
