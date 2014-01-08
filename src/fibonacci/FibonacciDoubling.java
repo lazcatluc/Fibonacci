@@ -7,32 +7,55 @@
 package fibonacci;
 
 import java.math.BigInteger;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 
 /**
  *
  * @author Catalin
  */
-public class FibonacciDoubling {
-    private final BigInteger[] cache;
-
-    private FibonacciDoubling(int n) {
-        cache = new BigInteger[n+2];
-        cache[1] = BigInteger.ONE;
-        cache[2] = BigInteger.ONE;
+public class FibonacciDoubling extends RecursiveTask<BigInteger> {
+    
+    /*
+     * A cache of squared fibonacci numbers
+     */
+    private static BigInteger[] cache;
+    
+    private final int power;
+    
+    public FibonacciDoubling(int power) {
+        this.power = power;
     }
     
     public static BigInteger getFibonacciNumber(int n) {
-        return new FibonacciDoubling(n).compute(n+1);
+        cache = new BigInteger[n+2];
+        cache[1] = BigInteger.ONE;
+        cache[2] = BigInteger.ONE;
+        return new ForkJoinPool().invoke(new FibonacciDoubling(n+1));
     }
     
-    private BigInteger compute(int power) {
+    @Override
+    public BigInteger compute() {
         if (cache[power] == null) {
             final int halfPower = power/2;
+            final FibonacciDoubling halfPowerDoubling = new FibonacciDoubling(halfPower+1);
+            halfPowerDoubling.fork();
+            BigInteger result;
             if (power % 2 == 0) {
-                cache[power] = compute(halfPower+1).pow(2).subtract(compute(halfPower-1).pow(2));
+                FibonacciDoubling remainder = new FibonacciDoubling(halfPower-1);
+                remainder.fork();
+                result = halfPowerDoubling.join().subtract(remainder.join());
             }
             else {
-                cache[power] = compute(halfPower).pow(2).add(compute(halfPower+1).pow(2));
+                FibonacciDoubling remainder = new FibonacciDoubling(halfPower);
+                remainder.fork();
+                result = remainder.join().add(halfPowerDoubling.join());
+            }
+            if (power < cache.length-1) {
+                cache[power] = result.pow(2);
+            }
+            else {
+                cache[power] = result;
             }
         }
         return cache[power];
