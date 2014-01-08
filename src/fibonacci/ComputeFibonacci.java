@@ -2,6 +2,10 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 package fibonacci;
@@ -13,7 +17,7 @@ import java.math.BigInteger;
  * @author Catalin
  */
 public class ComputeFibonacci {
-    private FibonacciMatrix matrix = new FibonacciMatrix(BigInteger.ZERO, BigInteger.ONE);
+    private FibonacciMatrix matrix;
     
     private final int power;
     
@@ -22,6 +26,7 @@ public class ComputeFibonacci {
     }
     
     public void compute() {
+        matrix = new FibonacciMatrix(BigInteger.ZERO, BigInteger.ONE);
         if (power > 1) {
             ComputeFibonacci compRec = new ComputeFibonacci(power / 2);
             compRec.compute();
@@ -31,7 +36,7 @@ public class ComputeFibonacci {
             }
         }
     }
-    
+  
     public BigInteger getFibonacciNumber() {
         return getMatrix().getFibonacciNumber();
     }

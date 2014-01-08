@@ -11,15 +11,18 @@ package fibonacci;
  * @author Catalin
  */
 public class Fibonacci {
+    public static int n = 10000000;
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        
-        ComputeFibonacci computeFib = new ComputeFibonacci(4000000);
+    public static void main(String[] args) {  
+        long millis = System.currentTimeMillis();
+        ComputeFibonacci computeFib = new ComputeFibonacci(n);
         computeFib.compute();
-        System.out.println(computeFib.getFibonacciNumber());
+        System.out.print((System.currentTimeMillis() - millis) / 1000);
+        System.out.println(" seconds"); 
     }
+    
     
 }
