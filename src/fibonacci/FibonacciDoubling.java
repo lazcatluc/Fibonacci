@@ -21,7 +21,7 @@ public class FibonacciDoubling extends RecursiveTask<BigInteger> {
      * A cache of squared fibonacci numbers
      */
     private static BigInteger[] cache;
-    public static final AtomicLong COUNT_COMP = new AtomicLong(0);
+    private static final BigInteger COMPUTING = BigInteger.valueOf(-1);
     
     private final int power;
     
@@ -33,13 +33,13 @@ public class FibonacciDoubling extends RecursiveTask<BigInteger> {
         cache = new BigInteger[n+2];
         cache[1] = BigInteger.ONE;
         cache[2] = BigInteger.ONE;
-        COUNT_COMP.set(0);
         return new ForkJoinPool().invoke(new FibonacciDoubling(n+1));
     }
     
     @Override
     public BigInteger compute() {
         if (cache[power] == null) {
+            cache[power] = COMPUTING;
             final int halfPower = power/2;
             final FibonacciDoubling halfPowerDoubling = new FibonacciDoubling(halfPower+1);
             halfPowerDoubling.fork();
@@ -57,11 +57,14 @@ public class FibonacciDoubling extends RecursiveTask<BigInteger> {
             if (power < cache.length-1) {
                 result = result.pow(2);
             }
-            if (cache[power] != null) {
-                // we worked for nothing :(
-                COUNT_COMP.incrementAndGet();
-            }
+            
             cache[power] = result;
+        }
+        while (COMPUTING == cache[power]) {
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException ex) {
+            }
         }
         return cache[power];
     }
