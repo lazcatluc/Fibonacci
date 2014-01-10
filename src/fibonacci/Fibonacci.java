@@ -18,14 +18,9 @@ public class Fibonacci {
      */
     public static void main(String[] args) {  
         long millis = System.currentTimeMillis();
-        ComputeFibonacci computeFib = new ComputeFibonacci(n);
-        computeFib.compute();
-        long first = System.currentTimeMillis();
-        System.out.print((first - millis) / 1000);
-        System.out.println(" seconds"); 
-        
+       
         FibonacciDoubling.getFibonacciNumber(n);
-        long second = System.currentTimeMillis() - first;
+        long second = System.currentTimeMillis() - millis;
         System.out.print(second / 1000);
         System.out.println(" seconds"); 
     }
