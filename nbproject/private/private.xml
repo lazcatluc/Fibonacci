@@ -4,11 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Catalin/Documents/NetBeansProjects/Fibonacci/src/fibonacci/Fibonacci.java</file>
-            <file>file:/C:/Users/Catalin/Documents/NetBeansProjects/Fibonacci/test/fibonacci/FibonacciTest.java</file>
-            <file>file:/C:/Users/Catalin/Documents/NetBeansProjects/Fibonacci/src/fibonacci/ComputeFibonacci.java</file>
-            <file>file:/C:/Users/Catalin/Documents/NetBeansProjects/Fibonacci/src/fibonacci/FibonacciDoubling.java</file>
-            <file>file:/C:/Users/Catalin/Documents/NetBeansProjects/Fibonacci/test/fibonacci/FibonacciDoublingTest.java</file>
             <file>file:/C:/Users/Catalin/Documents/NetBeansProjects/Fibonacci/src/fibonacci/FibonacciMatrix.java</file>
+            <file>file:/C:/Users/Catalin/Documents/NetBeansProjects/Fibonacci/src/fibonacci/ComputeFibonacci.java</file>
         </group>
     </open-files>
 </project-private>

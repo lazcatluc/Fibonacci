@@ -10,16 +10,14 @@
 
 package fibonacci;
 
-import java.math.BigInteger;
-
 /**
  *
  * @author Catalin
  */
-public class FibonacciMatrix {
-    private final BigInteger[][] cells = new BigInteger[2][2];
+public class FibonacciMatrix<T extends Fibonacciable<T>> {
+    private final Fibonacciable[][] cells = new Fibonacciable[2][2];
     
-    public FibonacciMatrix(BigInteger fib0, BigInteger fib1) {
+    public FibonacciMatrix(T fib0, T fib1) {
         cells[0][0] = fib0;
         cells[1][0] = fib1;
         cells[0][1] = fib1;
@@ -27,17 +25,17 @@ public class FibonacciMatrix {
     }
     
     public FibonacciMatrix square() {
-        final BigInteger aSquare = cells[0][0].pow(2);
-        return new FibonacciMatrix(aSquare.add(cells[0][1].pow(2)),
-            cells[1][1].pow(2).subtract(aSquare));
+        final Fibonacciable<T> aSquare = cells[0][0].square();
+        return new FibonacciMatrix(aSquare.add((T)cells[0][1].square()),
+            cells[1][1].square().subtract(aSquare));
     }
     
     public FibonacciMatrix multiplyByZeroOne() {
         return new FibonacciMatrix(cells[0][1], cells[1][1]);
     }
     
-    public BigInteger getFibonacciNumber() {
-        return cells[1][1];
+    public Number getFibonacciNumber() {
+        return cells[1][1].getValue();
     }
 
 }

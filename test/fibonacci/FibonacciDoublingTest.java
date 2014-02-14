@@ -8,16 +8,18 @@ package fibonacci;
 
 import java.math.BigInteger;
 import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 /**
  *
  * @author Catalin
  */
+
 public class FibonacciDoublingTest extends FibonacciTest {
 
     @Override
-    protected void assertExpectedFibonacci(BigInteger expectedFibonacci, int n) {
+    protected void assertExpectedFibonacci(Number expectedFibonacci, int n) {
         assertEquals(expectedFibonacci, FibonacciDoubling.getFibonacciNumber(n));
-    }
+    }    
     
 }

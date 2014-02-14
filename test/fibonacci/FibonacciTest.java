@@ -20,19 +20,19 @@ import static org.junit.Assert.*;
  */
 public class FibonacciTest {
     
-    protected void assertExpectedFibonacci(BigInteger expectedFibonacci, int n) {
+    protected void assertExpectedFibonacci(Number expectedFibonacci, int n) {
         ComputeFibonacci computeFibonacci = new ComputeFibonacci(n);
         computeFibonacci.compute();
         
         assertEquals(expectedFibonacci, computeFibonacci.getMatrix().getFibonacciNumber());
     }
-    
+   
     /**
      * Test of main method, of class Fibonacci.
      */
     @Test
     public void fib1is1() {
-        assertExpectedFibonacci(BigInteger.ONE, 1);
+        assertExpectedFibonacci(BigInteger.valueOf(1), 1);
     }
     
     @Test

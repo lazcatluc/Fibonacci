@@ -8,17 +8,26 @@ import java.math.BigInteger;
  */
 public class ComputeFibonacci {
     private FibonacciMatrix matrix;
+    private final Fibonacciable zero, one;
     
     private final int power;
     
     public ComputeFibonacci(int count) {
         this.power = count;
+        zero = new FibonacciBigInteger(BigInteger.ZERO);
+        one = new FibonacciBigInteger(BigInteger.ONE);
+    }
+    
+    public ComputeFibonacci(int count, Fibonacciable zero, Fibonacciable one) {
+        this.power = count;
+        this.zero = zero;
+        this.one = one;
     }
     
     public void compute() {
-        matrix = new FibonacciMatrix(BigInteger.ZERO, BigInteger.ONE);
+        matrix = new FibonacciMatrix(zero, one);
         if (power > 1) {
-            ComputeFibonacci compRec = new ComputeFibonacci(power / 2);
+            ComputeFibonacci compRec = new ComputeFibonacci(power / 2, zero, one);
             compRec.compute();
             matrix = compRec.getMatrix().square();
             if (power % 2 == 1) {

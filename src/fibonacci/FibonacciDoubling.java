@@ -9,7 +9,6 @@ package fibonacci;
 import java.math.BigInteger;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
@@ -31,9 +30,10 @@ public class FibonacciDoubling extends RecursiveTask<BigInteger> {
     
     public static BigInteger getFibonacciNumber(int n) {
         cache = new BigInteger[n+2];
+        cache[0] = BigInteger.ZERO;
         cache[1] = BigInteger.ONE;
         cache[2] = BigInteger.ONE;
-        return new ForkJoinPool().invoke(new FibonacciDoubling(n+1));
+        return new ForkJoinPool(100).invoke(new FibonacciDoubling(n+1));
     }
     
     @Override
