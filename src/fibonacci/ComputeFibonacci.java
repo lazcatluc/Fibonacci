@@ -10,15 +10,15 @@ public class ComputeFibonacci {
     private FibonacciMatrix matrix;
     private final Fibonacciable zero, one;
     
-    private final int power;
+    private final long power;
     
-    public ComputeFibonacci(int count) {
+    public ComputeFibonacci(long count) {
         this.power = count;
         zero = new FibonacciBigInteger(BigInteger.ZERO);
         one = new FibonacciBigInteger(BigInteger.ONE);
     }
     
-    public ComputeFibonacci(int count, Fibonacciable zero, Fibonacciable one) {
+    public ComputeFibonacci(long count, Fibonacciable zero, Fibonacciable one) {
         this.power = count;
         this.zero = zero;
         this.one = one;
